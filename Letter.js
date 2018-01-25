@@ -2,18 +2,32 @@
 function Letter(character) {
 	this.letter = character;
 	this.guessed = false;
+	if(character === ' ') {
+		this.guessed = true;
+	}
 }
 
 Letter.prototype.isLetter = function(guess) {
-	this.guessed = (guess === this.letter);
+	if(guess === this.letter) {
+		this.guessed = true;
+		return true;
+	} else {
+		return false;
+	}
 };
 
 Letter.prototype.getLetter = function() {
-	if(this.guessed) {
+	if(this.letter === ' ') {
+		return ' ';
+	} else if(this.guessed) {
 		return this.letter;
 	} else {
 		return '_';
 	}
+}
+
+Letter.prototype.getGuessed = function() {
+	return this.guessed;
 }
 
 module.exports =  Letter;
